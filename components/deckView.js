@@ -14,20 +14,20 @@ export default class DeckPage extends Component {
                 <LinearGradient 
                     style={styles.topSection}
                     colors={['black', 'rgb(44,44,46)']}>
-                    <Header navigation={navigation} routeTo='Decks'>Math</Header>
-                    <Text style={styles.sectionText}>Containes all the concept of the first exam of cpit 222</Text>
+                    <Header navigation={navigation} routeTo='Decks'>Data types</Header>
+                    <Text style={styles.sectionText}>Containes all the data types that used in programming</Text>
                     <TouchableOpacity style={styles.btn}>
                         <Text style={styles.btnText}>Quiz</Text>
                     </TouchableOpacity>
                 </LinearGradient>
                 <View style={styles.bottomSection}>
-                    <SectionHeader navigation={navigation} routeTo='Decks' icon='ios-add-circle'>Cards</SectionHeader>
+                    <SectionHeader navigation={navigation} routeTo='Decks' icon='ios-add-circle' routeTo="NewCard">Cards</SectionHeader>
                     <View style={styles.deckContainer}>
                         <Card cardfrontText="integer" cardBackText='numberdsafdsfasdfadfadfadsfasdfadsfadsfsdafadfsdfadsfasdfadsfsdafsdf'/>
-                        <Card cardfrontText="integer" cardBackText='numberdsafdsfasdfadfadfadsfasdfadsfadsfsdafadfsdfadsfasdfadsfsdafsdf'/>
-                        <Card cardfrontText="integer" cardBackText='numberdsafdsfasdfadfadfadsfasdfadsfadsfsdafadfsdfadsfasdfadsfsdafsdf'/>
-                        <Card cardfrontText="integer" cardBackText='numberdsafdsfasdfadfadfadsfasdfadsfadsfsdafadfsdfadsfasdfadsfsdafsdf'/>
-                        <Card cardfrontText="integer" cardBackText='numberdsafdsfasdfadfadfadsfasdfadsfadsfsdafadfsdfadsfasdfadsfsdafsdf'/>
+                        <Card cardfrontText="double" cardBackText='numberdsafdsfasdfadfadfadsfasdfadsfadsfsdafadfsdfadsfasdfadsfsdafsdf'/>
+                        <Card cardfrontText="string" cardBackText='numberdsafdsfasdfadfadfadsfasdfadsfadsfsdafadfsdfadsfasdfadsfsdafsdf'/>
+                        
+                        
                     </View>
                 </View>
             </ScrollView>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Keyboard,View, Text, StyleSheet, TextInput,TouchableOpacity,TouchableWithoutFeedback } from 'react-native'
 
-export default class NewDeck extends Component{
+export default class NewCard extends Component{
     state= {
         inputText: null
     }
@@ -15,12 +15,20 @@ export default class NewDeck extends Component{
         return (
             <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
                 <View style={styles.container}>
-                        <Text style={styles.action}>Create New Deck</Text>
+                        <Text style={styles.action}>Create New Card</Text>
                         <TextInput
                             clearButtonMode='while-editing'
                             placeholderTextColor="gray"
                             placeholder="name"
-                            maxLength={30}
+                            maxLength={60}
+                            value={inputText}
+                            onChangeText={this.handleInputChange}
+                            style={styles.input}
+                        />
+                        <TextInput
+                            clearButtonMode='while-editing'
+                            placeholderTextColor="gray"
+                            placeholder="name"
                             value={inputText}
                             onChangeText={this.handleInputChange}
                             style={styles.input}
@@ -38,6 +46,7 @@ const styles = StyleSheet.create({
     container:{
         flex:1,
         backgroundColor:'black',
+        alignItems:'stretch',
         padding:20
     },
     action:{

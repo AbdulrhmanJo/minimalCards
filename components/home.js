@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, FlatList } from 'react-native'
-import Ionicons from '@expo/vector-icons/Ionicons'
 import Deck from './deck'
 import Header  from './header'
 
@@ -12,9 +11,8 @@ export default class Home extends Component {
                <Header navigation={navigation} routeTo='NewDeck' icon="ios-add-circle">Decks</Header>
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <View style={style.deckContainer}>
-                        <Deck deckName="Math" numberOfCards={5} navigation={this.props.navigation}/>
+                        <Deck deckName="Data Types" numberOfCards={3} navigation={this.props.navigation}/>
                     </View>
-                   
                 </ScrollView>
             </View>
         )
