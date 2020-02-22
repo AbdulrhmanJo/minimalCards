@@ -2,9 +2,9 @@ import React from 'react'
 import { TouchableOpacity, Text, StyleSheet } from 'react-native'
 
 const Deck = (props) => {
-    const { deckName, numberOfCards } = props
+    const { deckName, numberOfCards, navigation } = props
     return (
-        <TouchableOpacity style={styles.card}>
+        <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('DeckView')}>
             <Text style={styles.cardTitle}>{deckName}</Text>
             <Text>{`${numberOfCards} cards`}</Text>
         </TouchableOpacity>

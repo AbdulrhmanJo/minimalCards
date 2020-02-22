@@ -27,7 +27,7 @@ export default class NewDeck extends Component{
                             style={styles.input}
                         />
                         <TouchableOpacity style={styles.button}>
-                            <Text style={{fontWeight:'500', fontSize:20}}>Add</Text>
+                            <Text style={{fontWeight:'500', fontSize:20, color:'white'}}>Add</Text>
                         </TouchableOpacity>
                     </View> 
                 </View>
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     button:{
         marginTop:45,
         alignItems:'center',
-        backgroundColor:'#eeeeee',
+        backgroundColor:'rgb(100,210,255)',
         borderRadius:8,
         padding:10,
     }

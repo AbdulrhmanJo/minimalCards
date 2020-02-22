@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Constants from 'expo-constants'
 import Home from './components/home'
 import NewDeck from './components/newDeck'
+import DeckPage from './components/deckView'
 
 const MyStatusBar = ({backgroundColor, ...props}) => (
   <View style={{height: Constants.statusBarHeight, backgroundColor }}>
@@ -20,6 +21,12 @@ const MyStack = () => {
       <Stack.Screen name="Decks" component={Home} options={{headerShown: false}}/>
       <Stack.Screen name="NewDeck" component={NewDeck} options={{
         title: null,
+        headerTransparent:true,
+        headerTintColor:'rgb(100,210,255)',
+      }} />
+      <Stack.Screen name="DeckView" component={DeckPage} options={{
+        title: null,
+        headerTintColor:'rgb(100,210,255)',
         headerTransparent:true,
       }} />
     </Stack.Navigator>
