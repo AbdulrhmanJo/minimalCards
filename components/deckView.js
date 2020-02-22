@@ -15,8 +15,8 @@ export default class DeckPage extends Component {
                     style={styles.topSection}
                     colors={['black', 'rgb(44,44,46)']}>
                     <Header navigation={navigation} routeTo='Decks'>Data types</Header>
-                    <Text style={styles.sectionText}>Containes all the data types that used in programming</Text>
-                    <TouchableOpacity style={styles.btn}>
+                    <Text style={styles.sectionText}>Contains all the data types that used in programming</Text>
+                    <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate("Quiz")}>
                         <Text style={styles.btnText}>Quiz</Text>
                     </TouchableOpacity>
                 </LinearGradient>
@@ -26,8 +26,6 @@ export default class DeckPage extends Component {
                         <Card cardfrontText="integer" cardBackText='numberdsafdsfasdfadfadfadsfasdfadsfadsfsdafadfsdfadsfasdfadsfsdafsdf'/>
                         <Card cardfrontText="double" cardBackText='numberdsafdsfasdfadfadfadsfasdfadsfadsfsdafadfsdfadsfasdfadsfsdafsdf'/>
                         <Card cardfrontText="string" cardBackText='numberdsafdsfasdfadfadfadsfasdfadsfadsfsdafadfsdfadsfasdfadsfsdafsdf'/>
-                        
-                        
                     </View>
                 </View>
             </ScrollView>

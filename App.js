@@ -7,6 +7,7 @@ import Home from './components/home'
 import NewDeck from './components/newDeck'
 import NewCard from './components/newCard'
 import DeckPage from './components/deckView'
+import Quiz from './components/quiz'
 
 const MyStatusBar = ({backgroundColor, ...props}) => (
   <View style={{height: Constants.statusBarHeight, backgroundColor }}>
@@ -31,6 +32,11 @@ const MyStack = () => {
         headerTransparent:true,
       }} />
       <Stack.Screen name="NewCard" component={NewCard} options={{
+        title: null,
+        headerTintColor:'rgb(100,210,255)',
+        headerTransparent:true,
+      }} />
+      <Stack.Screen name="Quiz" component={Quiz} options={{
         title: null,
         headerTintColor:'rgb(100,210,255)',
         headerTransparent:true,

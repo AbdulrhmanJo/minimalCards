@@ -3,15 +3,12 @@ import { Keyboard,View, Text, StyleSheet, TextInput,TouchableOpacity,TouchableWi
 
 export default class NewCard extends Component{
     state= {
-        inputText: null
+        answerText: null,
+        questionText:null,
     }
-    handleInputChange = (text) => {
-        this.setState({
-            inputText: text
-        })
-    }
+
     render(){
-        const { inputText } = this.state
+        const { answerText,  questionText} = this.state
         return (
             <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
                 <View style={styles.container}>
@@ -19,21 +16,20 @@ export default class NewCard extends Component{
                         <TextInput
                             clearButtonMode='while-editing'
                             placeholderTextColor="gray"
-                            placeholder="name"
-                            maxLength={60}
-                            value={inputText}
-                            onChangeText={this.handleInputChange}
+                            placeholder="Question"
+                            value={questionText}
+                            onChangeText={(text) => this.setState({ questionText: text})}
                             style={styles.input}
                         />
                         <TextInput
                             clearButtonMode='while-editing'
                             placeholderTextColor="gray"
-                            placeholder="name"
-                            value={inputText}
-                            onChangeText={this.handleInputChange}
+                            placeholder="Answer"
+                            value={answerText}
+                            onChangeText={(text) => this.setState({ answerText: text})}
                             style={styles.input}
                         />
-                        <TouchableOpacity style={styles.button}>
+                        <TouchableOpacity style={styles.button} >
                             <Text style={{fontWeight:'500', fontSize:20, color:'white'}}>Add</Text>
                         </TouchableOpacity>
                 </View>
@@ -70,5 +66,5 @@ const styles = StyleSheet.create({
         backgroundColor:'rgb(100,210,255)',
         borderRadius:8,
         padding:13,
-    }
+    },
 })
