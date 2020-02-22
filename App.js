@@ -1,19 +1,52 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, StatusBar } from 'react-native'
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import Constants from 'expo-constants'
+import Home from './components/home'
+import NewDeck from './components/newDeck'
+
+const MyStatusBar = ({backgroundColor, ...props}) => (
+  <View style={{height: Constants.statusBarHeight, backgroundColor }}>
+    <StatusBar translucent backgroundColor={backgroundColor} {...props} />
+  </View>
+);
+
+const Stack = createStackNavigator();
+
+const MyStack = () => {
+  return (
+    <Stack.Navigator >
+      <Stack.Screen name="Decks" component={Home} options={{headerShown: false}}/>
+      <Stack.Screen name="NewDeck" component={NewDeck} options={{
+        title: null,
+        headerTransparent:true,
+      }} />
+    </Stack.Navigator>
+  )
+}
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
+    <NavigationContainer>
+      <MyStatusBar backgroundColor="black" barStyle="light-content"/>
+      <MyStack/>
+      {/* <View style={{flex:1}}>
+        <MyStatusBar backgroundColor="black" barStyle="light-content"/>
+        <View style={styles.container}>
+          <Stack.Navigator>
+            <Stack.Screen name="Home" component={Home} options={{headerShown: false}}/>
+          </Stack.Navigator>
+        </View> 
+      </View> */}
+    </NavigationContainer>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+  // container: {
+  //   flex: 1,
+  //   backgroundColor: 'black',
+  //   padding:20
+  // },
 });
