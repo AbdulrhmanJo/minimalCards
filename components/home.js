@@ -1,19 +1,52 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, FlatList } from 'react-native'
+import { Text,View, StyleSheet, FlatList, AsyncStorage} from 'react-native'
 import Deck from './deck'
 import Header  from './header'
+import { connect } from 'react-redux'
+import { getDecks } from '../utils/api'
+import { recieveDecks } from '../actions/index'
 
-export default class Home extends Component {
+class Home extends Component {
+
+    state = {
+        isLoading: true,
+    }
+
+    componentDidMount(){
+        const {dispatch } = this.props
+        getDecks()
+        .then((decks) => dispatch(recieveDecks(decks)))
+        .then(() => this.setState({isLoading:false}))
+    }
+
+
     render(){
-        const { navigation } = this.props
+        
+        const { navigation, decks } = this.props
+        const { isLoading } = this.state
+
         return (
             <View style={style.homeContainer}>
                <Header navigation={navigation} routeTo='NewDeck' icon="ios-add-circle">Decks</Header>
-                <ScrollView showsVerticalScrollIndicator={false}>
-                    <View style={style.deckContainer}>
-                        <Deck deckName="Data Types" numberOfCards={3} navigation={this.props.navigation}/>
-                    </View>
-                </ScrollView>
+               {
+                   isLoading 
+                   ? <Text style={{fontSize:20, color:'white'}}>Loading</Text> 
+                   :(
+                    <FlatList
+                    data={Object.keys(decks).map((id) => ({ key: id }))}
+                    renderItem={({item, index}) => (
+                        <View style={[{flex: 1 }, index%2==0 ? { marginRight: 5 } : { marginLeft: 5 } ]}>
+                            <Deck deckID={item.key} navigation={navigation}/>
+                        </View>
+                    )}
+                    keyExtractor={item => item.key}
+                    horizontal={false} 
+                    numColumns={2}
+                    ItemSeparatorComponent={() => <View style={{height:10}}></View>}
+                    />
+                   )
+               }
+               
             </View>
         )
     }
@@ -49,3 +82,12 @@ const style = StyleSheet.create({
     }
 
 })
+
+const mapStatetoProps = (decks) => {
+    return {
+        decks
+    }
+}
+
+
+export default connect(mapStatetoProps)(Home)

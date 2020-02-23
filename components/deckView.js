@@ -1,34 +1,38 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, ScrollView, TouchableOpacity} from 'react-native'
+import { Text, View, StyleSheet, ScrollView, TouchableOpacity, FlatList} from 'react-native'
 import Header  from './header'
 import SectionHeader from './sectionHeader'
 import { LinearGradient } from 'expo-linear-gradient';
 import Card from './card'
-
-export default class DeckPage extends Component {
+import { connect } from 'react-redux'
+class DeckPage extends Component {
     render(){
-        const { navigation } = this.props;
-
+        
+        const { navigation, deck } = this.props;
+        
         return (
-            <ScrollView style={styles.container}>
+            <View style={styles.container}>
                 <LinearGradient 
                     style={styles.topSection}
                     colors={['black', 'rgb(44,44,46)']}>
-                    <Header navigation={navigation} routeTo='Decks'>Data types</Header>
-                    <Text style={styles.sectionText}>Contains all the data types that used in programming</Text>
+                    <Header stylee= {{fontSize:30}} navigation={navigation} routeTo='Decks'>{deck.title}</Header>
+                    <Text style={styles.sectionText}>{deck.description}</Text>
                     <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate("Quiz")}>
-                        <Text style={styles.btnText}>Quiz</Text>
+                        <Text style={styles.btnText}>Take Quiz</Text>
                     </TouchableOpacity>
                 </LinearGradient>
                 <View style={styles.bottomSection}>
                     <SectionHeader navigation={navigation} routeTo='Decks' icon='ios-add-circle' routeTo="NewCard">Cards</SectionHeader>
-                    <View style={styles.deckContainer}>
-                        <Card cardfrontText="integer" cardBackText='numberdsafdsfasdfadfadfadsfasdfadsfadsfsdafadfsdfadsfasdfadsfsdafsdf'/>
-                        <Card cardfrontText="double" cardBackText='numberdsafdsfasdfadfadfadsfasdfadsfadsfsdafadfsdfadsfasdfadsfsdafsdf'/>
-                        <Card cardfrontText="string" cardBackText='numberdsafdsfasdfadfadfadsfasdfadsfadsfsdafadfsdfadsfasdfadsfsdafsdf'/>
-                    </View>
+                    <FlatList
+                        data={deck.cards}
+                        renderItem={({item}) => (
+                            <Card  cardfrontText={item.question} cardBackText={item.answer}/>
+                        )}
+                        keyExtractor={item => item.question}
+                    />
                 </View>
-            </ScrollView>
+
+            </View>
         )
     }
 }
@@ -65,9 +69,21 @@ const styles = StyleSheet.create({
 
     bottomSection:{
         padding:20,
+        flex:1
     },
 
     deckContainer:{
         flex:1,
     }
 })
+
+const mapStateToProps = (decks, { route }) => {
+    const id = route.params.deckID
+    const deck = decks[id]    
+
+    return {
+        deck
+    }
+}
+
+export default connect(mapStateToProps)(DeckPage)

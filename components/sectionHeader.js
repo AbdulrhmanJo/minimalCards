@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
 
     },
     topBarText:{
-        fontSize:25,
+        fontSize:23,
         fontWeight:'700', 
         color:'white'
     },

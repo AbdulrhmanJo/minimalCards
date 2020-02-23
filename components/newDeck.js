@@ -1,14 +1,35 @@
 import React, { Component } from 'react'
 import { Keyboard,View, Text, StyleSheet, TextInput,TouchableOpacity,TouchableWithoutFeedback } from 'react-native'
-
-export default class NewDeck extends Component{
+import { connect } from 'react-redux'
+import { storeDeck } from '../utils/api'
+import { addDeck } from '../actions/index'
+class NewDeck extends Component{
     state= {
-        inputText: null
+        name: null,
+        description: null
     }
-    handleInputChange = (text) => {
-        this.setState({
-            inputText: text
-        })
+
+    addNewDeck = () => {
+        const { name, description} = this.state
+        const { dispatch } = this.props
+
+        if(!name && !description){
+            alert("please Enter the information of the deck")
+        }else if(!name){
+            alert("please Enter the name of the deck")
+        }else if(!description){
+            alert("please Enter the description of the deck")
+        }else{
+            const deck = {
+                title:name.trim(),
+                description:description.trim(),
+                cards:[]
+            }
+            dispatch(addDeck(deck))
+            this.setState({name: null,description: null}) 
+            this.props.navigation.navigate('Decks')
+            storeDeck(deck)
+        }
     }
     render(){
         const { inputText } = this.state
@@ -20,12 +41,21 @@ export default class NewDeck extends Component{
                             clearButtonMode='while-editing'
                             placeholderTextColor="gray"
                             placeholder="name"
-                            maxLength={30}
+                            maxLength={25}
                             value={inputText}
-                            onChangeText={this.handleInputChange}
+                            onChangeText={(text) => this.setState({name:text})}
                             style={styles.input}
                         />
-                        <TouchableOpacity style={styles.button}>
+                        <TextInput
+                            clearButtonMode='while-editing'
+                            placeholderTextColor="gray"
+                            placeholder="description"
+                            maxLength={120}
+                            value={inputText}
+                            onChangeText={(text) => this.setState({description:text})}
+                            style={styles.input}
+                        />
+                        <TouchableOpacity style={styles.button} onPress={this.addNewDeck}>
                             <Text style={{fontWeight:'500', fontSize:20, color:'white'}}>Add</Text>
                         </TouchableOpacity>
                 </View>
@@ -63,3 +93,5 @@ const styles = StyleSheet.create({
         padding:13,
     }
 })
+
+export default connect()(NewDeck)
