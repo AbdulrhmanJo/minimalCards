@@ -3,6 +3,7 @@ import {View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import MaterialIcons from '@expo/vector-icons/MaterialIcons'
 import MyFlipCard from './flipCard'
+import Score from './score'
 import { connect } from 'react-redux'
 class Quiz extends Component {
     state = {
@@ -28,7 +29,7 @@ class Quiz extends Component {
         }))
     }
     render(){
-        const { currentIndex } = this.state
+        const { currentIndex, correct, inCorrect } = this.state
         const { cards } = this.props   
         const show = currentIndex < cards.length     
         return(
@@ -57,9 +58,7 @@ class Quiz extends Component {
                         </View>
                     </View>
 
-                    :
-
-                    <Text style={{fontSize:20, color:'white'}}>{this.state.correct+"-"+this.state.inCorrect}</Text>
+                    : <Score correct={correct} inCorrect={inCorrect}/>
                 }
             </View>
 
