@@ -8,9 +8,9 @@ import { connect } from 'react-redux'
 class DeckPage extends Component {
 
     handleQuiz = () => {
-        const { navigation, deck } = this.props
+        const { navigation, deck, id } = this.props
         if(deck.cards.length > 0){
-            navigation.navigate('Quiz')
+            navigation.navigate('Quiz',{deckID: id})
         }else{
             alert('there are no cards to take a quiz, please add at least on card to take a quiz')
         }
