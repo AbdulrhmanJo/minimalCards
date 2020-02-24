@@ -28,6 +28,21 @@ class Quiz extends Component {
             inCorrect:state.inCorrect + 1,
         }))
     }
+
+    reset = () => {
+        this.setState({
+            flip: false,
+            currentIndex:0, 
+            correct:0,
+            inCorrect:0
+        })
+    }
+
+    goBack = () => {
+        const { navigation } = this.props
+        navigation.goBack()
+    }
+
     render(){
         const { currentIndex, correct, inCorrect } = this.state
         const { cards } = this.props   
@@ -58,7 +73,7 @@ class Quiz extends Component {
                         </View>
                     </View>
 
-                    : <Score correct={correct} inCorrect={inCorrect}/>
+                    : <Score correct={correct} inCorrect={inCorrect} reset={this.reset} goBack={this.goBack}/>
                 }
             </View>
 

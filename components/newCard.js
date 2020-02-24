@@ -33,8 +33,6 @@ class NewCard extends Component{
     }
 
     render(){
-        console.log(this.props);
-
         const { answer,  question} = this.state
         return (
             <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>

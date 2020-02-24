@@ -28,10 +28,10 @@ export default class Score extends Component{
                     </View>
                 </View>
                 <View style={{flex:1}}>
-                    <TouchableOpacity style={styles.btn}>
+                    <TouchableOpacity style={styles.btn} onPress={this.props.reset}>
                         <Text style={styles.btnText}>Reset</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={[styles.btn, {marginTop:15}]}>
+                    <TouchableOpacity style={[styles.btn, {marginTop:15}]} onPress={this.props.goBack}>
                         <Text style={styles.btnText}>Back</Text>
                     </TouchableOpacity>
                 </View>

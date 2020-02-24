@@ -4,7 +4,7 @@ import NewDeck from '../components/newDeck'
 import NewCard from '../components/newCard'
 import DeckPage from '../components/deckView'
 import Quiz from '../components/quiz'
-import { createStackNavigator } from '@react-navigation/stack';
+import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
 
 
 const Stack = createStackNavigator();
@@ -21,7 +21,8 @@ const MyStack = () => {
       <Stack.Screen name="DeckView" component={DeckPage} options={{
         title: null,
         headerTintColor:'rgb(100,210,255)',
-        headerTransparent:true,
+        headerTransparent:true,        
+
       }} />
       <Stack.Screen name="NewCard" component={NewCard} options={{
         title: null,
@@ -32,6 +33,7 @@ const MyStack = () => {
         title: null,
         headerTintColor:'rgb(100,210,255)',
         headerTransparent:true,
+        ...TransitionPresets.ModalSlideFromBottomIOS,
       }} />
     </Stack.Navigator>
   )
