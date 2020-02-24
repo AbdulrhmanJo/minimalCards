@@ -4,14 +4,14 @@ import { connect } from 'react-redux'
 import { storeDeck } from '../utils/api'
 import { addDeck } from '../actions/index'
 class NewDeck extends Component{
-    state= {
+    state = {
         name: null,
         description: null
     }
 
     addNewDeck = () => {
         const { name, description} = this.state
-        const { dispatch } = this.props
+        const { dispatch,navigation } = this.props
 
         if(!name && !description){
             alert("please Enter the information of the deck")
@@ -27,7 +27,7 @@ class NewDeck extends Component{
             }
             dispatch(addDeck(deck))
             this.setState({name: null,description: null}) 
-            this.props.navigation.navigate('Decks')
+            navigation.navigate('Decks')
             storeDeck(deck)
         }
     }

@@ -12,10 +12,10 @@ export function storeDeck(deck) {
     }))
 }
 
-export function addCard(key, question, answer) {
+export function storeCard(deckID, card) {
     AsyncStorage.getItem(KEY).then((result) => {
-        let data = JSON.parse(result)
-        data[key].cards.push({question: question, answer: answer})
+        let decks = JSON.parse(result)
+        decks[deckID].cards.push(card)
         AsyncStorage.mergeItem(KEY, JSON.stringify(decks))
     })
 }

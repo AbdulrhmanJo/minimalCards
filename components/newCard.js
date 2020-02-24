@@ -1,14 +1,41 @@
 import React, { Component } from 'react'
 import { Keyboard,View, Text, StyleSheet, TextInput,TouchableOpacity,TouchableWithoutFeedback } from 'react-native'
+import { connect } from 'react-redux'
+import { addCard } from '../actions/index'
+import { storeCard } from '../utils/api'
+class NewCard extends Component{
+    state = {
+        answer: null,
+        question:null,
+    }
 
-export default class NewCard extends Component{
-    state= {
-        answerText: null,
-        questionText:null,
+    handleAddCard = () => {
+        const { answer, question} = this.state
+        const { dispatch, navigation, route } = this.props
+        const id = route.params.deckID
+        if(!answer && !question){
+            alert("please Enter card information")
+        }else if(!question){
+            alert("please Enter card question")
+        }else if(!answer){
+            alert("please Enter card answer")
+        }else{
+            const card = {
+                question,
+                answer
+            }
+
+            dispatch(addCard(id,card))
+            this.setState({ answer: null,question:null,})
+            navigation.goBack()
+            storeCard(id, card)
+        }
     }
 
     render(){
-        const { answerText,  questionText} = this.state
+        console.log(this.props);
+
+        const { answer,  question} = this.state
         return (
             <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
                 <View style={styles.container}>
@@ -17,19 +44,19 @@ export default class NewCard extends Component{
                             clearButtonMode='while-editing'
                             placeholderTextColor="gray"
                             placeholder="Question"
-                            value={questionText}
-                            onChangeText={(text) => this.setState({ questionText: text})}
+                            value={question}
+                            onChangeText={(text) => this.setState({ question: text})}
                             style={styles.input}
                         />
                         <TextInput
                             clearButtonMode='while-editing'
                             placeholderTextColor="gray"
                             placeholder="Answer"
-                            value={answerText}
-                            onChangeText={(text) => this.setState({ answerText: text})}
+                            value={answer}
+                            onChangeText={(text) => this.setState({ answer: text})}
                             style={styles.input}
                         />
-                        <TouchableOpacity style={styles.button} >
+                        <TouchableOpacity style={styles.button} onPress={this.handleAddCard}>
                             <Text style={{fontWeight:'500', fontSize:20, color:'white'}}>Add</Text>
                         </TouchableOpacity>
                 </View>
@@ -68,3 +95,5 @@ const styles = StyleSheet.create({
         padding:13,
     },
 })
+
+export default connect()(NewCard)

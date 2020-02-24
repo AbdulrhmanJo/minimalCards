@@ -6,9 +6,19 @@ import { LinearGradient } from 'expo-linear-gradient';
 import Card from './card'
 import { connect } from 'react-redux'
 class DeckPage extends Component {
+
+    handleQuiz = () => {
+        const { navigation, deck } = this.props
+        if(deck.cards.length > 0){
+            navigation.navigate('Quiz')
+        }else{
+            alert('there are no cards to take a quiz, please add at least on card to take a quiz')
+        }
+    }
+
     render(){
         
-        const { navigation, deck } = this.props;
+        const { navigation, deck,id } = this.props;
         
         return (
             <View style={styles.container}>
@@ -17,18 +27,25 @@ class DeckPage extends Component {
                     colors={['black', 'rgb(44,44,46)']}>
                     <Header stylee= {{fontSize:30}} navigation={navigation} routeTo='Decks'>{deck.title}</Header>
                     <Text style={styles.sectionText}>{deck.description}</Text>
-                    <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate("Quiz")}>
+                    <TouchableOpacity style={styles.btn} onPress={this.handleQuiz}>
                         <Text style={styles.btnText}>Take Quiz</Text>
                     </TouchableOpacity>
                 </LinearGradient>
                 <View style={styles.bottomSection}>
-                    <SectionHeader navigation={navigation} routeTo='Decks' icon='ios-add-circle' routeTo="NewCard">Cards</SectionHeader>
+                    <SectionHeader navigation={navigation} routeTo='Decks' icon='ios-add-circle' routeTo="NewCard" deckID={id}>Cards</SectionHeader>
                     <FlatList
                         data={deck.cards}
                         renderItem={({item}) => (
                             <Card  cardfrontText={item.question} cardBackText={item.answer}/>
                         )}
                         keyExtractor={item => item.question}
+                        ListEmptyComponent={() => (
+                            <View style={styles.error}>
+                                <Text style={styles.errorHeader}>No Cards</Text>
+                                <Text style={styles.errorMessage}>All Cards that you've added will appear here.</Text>
+                            </View>
+                        
+                        )}
                     />
                 </View>
 
@@ -69,12 +86,33 @@ const styles = StyleSheet.create({
 
     bottomSection:{
         padding:20,
-        flex:1
+        paddingBottom:0,
+        flex:1,
     },
 
     deckContainer:{
         flex:1,
-    }
+    },
+    
+    error:{
+        marginTop:50,
+        flex:1,
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    errorHeader:{
+      fontSize:20,
+      color:'#aeb0b2',
+      fontWeight:'700',
+      marginBottom:5
+    },
+    errorMessage:{
+        width:300,
+        fontSize:17,
+        color:'#636366',
+        fontWeight:'500',
+        textAlign:'center'
+      }
 })
 
 const mapStateToProps = (decks, { route }) => {
@@ -82,7 +120,8 @@ const mapStateToProps = (decks, { route }) => {
     const deck = decks[id]    
 
     return {
-        deck
+        deck,
+        id
     }
 }
 

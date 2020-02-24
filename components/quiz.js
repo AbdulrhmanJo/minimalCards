@@ -5,7 +5,7 @@ import MaterialIcons from '@expo/vector-icons/MaterialIcons'
 import MyFlipCard from './flipCard'
 
 export default class Quiz extends Component {
-    state={
+    state = {
         flip: false,
     }
     render(){
@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
     container:{
         flex:1,
         padding:20,
+        paddingBottom:0,
         backgroundColor:'black'
     },
     topSection:{
@@ -62,6 +63,6 @@ const styles = StyleSheet.create({
         flex:2,    
         padding:20,
         justifyContent:'space-between',
-        flexDirection:'row'
+        flexDirection:'row',
     }
 })

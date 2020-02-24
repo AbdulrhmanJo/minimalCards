@@ -2,11 +2,11 @@ import React from 'react'
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
 import Ionicons from '@expo/vector-icons/Ionicons'
 const SectionHeader = (props) => {
-    const { children, navigation, routeTo,icon} = props
+    const { children, navigation, routeTo,icon, deckID} = props
     return (
         <View style={styles.topBar}>
             <Text style={styles.topBarText}>{children}</Text>
-            <TouchableOpacity onPress={() => navigation.navigate(`${routeTo}`)}>
+            <TouchableOpacity onPress={() => navigation.navigate(`${routeTo}`,{ deckID: deckID })}>
                 <Ionicons name={icon} color="white" size={30} style={{ height: 35 - 1}}/>
             </TouchableOpacity>                   
         </View>
