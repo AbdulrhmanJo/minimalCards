@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { clearLocalNotification, setLocalNotification } from '../utils/helper'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import MaterialIcons from '@expo/vector-icons/MaterialIcons'
 import MyFlipCard from './flipCard'
@@ -12,6 +13,12 @@ class Quiz extends Component {
         correct:0,
         inCorrect:0
     }
+
+    componentDidMount(){
+        clearLocalNotification()
+        .then(setLocalNotification)
+    }
+    
 
     handleCorrect = () => {
         this.setState((state) => ({
