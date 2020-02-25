@@ -24,15 +24,15 @@ export default class Score extends Component{
                     </View>
                     <View style={{alignItems:'center'}}>
                         <Text style={styles.wrong}>{inCorrect}</Text>
-                        <Text style={styles.text}>Wrong</Text>
+                        <Text style={styles.text}>Incorrect</Text>
                     </View>
                 </View>
                 <View style={{flex:1}}>
                     <TouchableOpacity style={styles.btn} onPress={this.props.reset}>
-                        <Text style={styles.btnText}>Reset</Text>
+                        <Text style={styles.btnText}>Restart Quiz</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={[styles.btn, {marginTop:15}]} onPress={this.props.goBack}>
-                        <Text style={styles.btnText}>Back</Text>
+                        <Text style={styles.btnText}>Back to Deck</Text>
                     </TouchableOpacity>
                 </View>
             </View>

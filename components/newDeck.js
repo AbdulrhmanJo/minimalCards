@@ -56,7 +56,7 @@ class NewDeck extends Component{
                             style={styles.input}
                         />
                         <TouchableOpacity style={styles.button} onPress={this.addNewDeck}>
-                            <Text style={{fontWeight:'500', fontSize:20, color:'white'}}>Add</Text>
+                            <Text style={{fontWeight:'500', fontSize:20, color:'white'}}>Create Deck</Text>
                         </TouchableOpacity>
                 </View>
             </TouchableWithoutFeedback>

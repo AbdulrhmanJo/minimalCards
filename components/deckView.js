@@ -28,7 +28,7 @@ class DeckPage extends Component {
                     <Header stylee= {{fontSize:30}} navigation={navigation} routeTo='Decks'>{deck.title}</Header>
                     <Text style={styles.sectionText}>{deck.description}</Text>
                     <TouchableOpacity style={styles.btn} onPress={this.handleQuiz}>
-                        <Text style={styles.btnText}>Take Quiz</Text>
+                        <Text style={styles.btnText}>Start a Quiz</Text>
                     </TouchableOpacity>
                 </LinearGradient>
                 <View style={styles.bottomSection}>

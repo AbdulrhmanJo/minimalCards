@@ -55,7 +55,7 @@ class NewCard extends Component{
                             style={styles.input}
                         />
                         <TouchableOpacity style={styles.button} onPress={this.handleAddCard}>
-                            <Text style={{fontWeight:'500', fontSize:20, color:'white'}}>Add</Text>
+                            <Text style={{fontWeight:'500', fontSize:20, color:'white'}}>Add Card</Text>
                         </TouchableOpacity>
                 </View>
             </TouchableWithoutFeedback>
