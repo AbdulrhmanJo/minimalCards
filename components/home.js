@@ -43,6 +43,12 @@ class Home extends Component {
                     horizontal={false} 
                     numColumns={2}
                     ItemSeparatorComponent={() => <View style={{height:10}}></View>}
+                    ListEmptyComponent={() => (
+                        <View style={style.error}>
+                            <Text style={style.errorHeader}>No Decks</Text>
+                            <Text style={style.errorMessage}>All decks that you've added will appear here.</Text>
+                        </View>
+                    )}
                     />
                    )
                }
@@ -78,8 +84,27 @@ const style = StyleSheet.create({
     deckContainer:{
         flexDirection:"row", 
         justifyContent:'space-between', 
-        marginBottom:20
-    }
+        marginBottom:20,
+    },
+    error:{
+        marginTop:50,
+        flex:1,
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    errorHeader:{
+      fontSize:23,
+      color:'#aeb0b2',
+      fontWeight:'700',
+      marginBottom:5
+    },
+    errorMessage:{
+        width:300,
+        fontSize:19,
+        color:'#636366',
+        fontWeight:'500',
+        textAlign:'center'
+      }
 
 })
 

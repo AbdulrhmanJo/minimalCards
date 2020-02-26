@@ -3,7 +3,7 @@ import { DecksResults, KEY } from './_data'
 
 export function getDecks() {
     return AsyncStorage.getItem(KEY)
-    .then(DecksResults)
+    .then((data) => JSON.parse(data))
 }
 
 export function storeDeck(deck) {

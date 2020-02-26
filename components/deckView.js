@@ -44,7 +44,6 @@ class DeckPage extends Component {
                                 <Text style={styles.errorHeader}>No Cards</Text>
                                 <Text style={styles.errorMessage}>All Cards that you've added will appear here.</Text>
                             </View>
-                        
                         )}
                     />
                 </View>

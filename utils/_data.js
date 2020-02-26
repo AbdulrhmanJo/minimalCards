@@ -46,16 +46,16 @@ let decks = {
     },
 }
 
-storeData = async () => {
-    try {
-       const d = await AsyncStorage.setItem(KEY,JSON.stringify(decks))
-       return d
-    } catch (error) {
-        console.log(error);
-    }
-}
+// storeData = async () => {
+//     try {
+//        const d = await AsyncStorage.setItem(KEY,JSON.stringify(decks))
+//        return d
+//     } catch (error) {
+//         console.log(error);
+//     }
+// }
 
-export function DecksResults(results) {
-    return results === null ? storeData() : JSON.parse(results)
-}
+// export function DecksResults(results) {
+//     return results !== null ? JSON.parse(results) 
+// }
 

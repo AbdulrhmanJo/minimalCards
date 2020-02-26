@@ -15,9 +15,7 @@ export default function decks(state={}, action){
                 }              
             }
         case ADD_DECK:
-            const { deck } = action
-            console.log(deck);
-            
+            const { deck } = action            
             return {
                 ...state,
                [deck.title]:{
